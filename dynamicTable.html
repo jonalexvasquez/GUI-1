@@ -2,34 +2,71 @@
         Name: Jonathan Vasquez, Jonathan_Vasquez@student.uml.edu
         Student in CS department
         Comp.4610, GUI Programming I
-        File: /usr/cs/2015/jvasquez/public_html/461f2017/hw4/dynamicTable.html
-        Created: 11/12/17
+        File: /usr/cs/2015/jvasquez/public_html/461f2017/hw5/dynamicTable.html
+        Created: 11/19/17
 -->
 
 <!DOCTYPE html>
 <html>
 <head>
   <title>Finance and Lease Tool</title>
-  <link rel="stylesheet" type="text/css" href="/Users/jvasquez/Documents/gui1/dynamicTable.css">
+  <link rel="stylesheet" type="text/css" href="/usr/cs/2015/jvasquez/public_html/461f2017/hw5/dynamicTable.css">
+  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+  <script>
+    $(function() {
+      $("#myForm").validate({
+             rules: {
+               cost: {
+                 required: true,
+                 number: true,
+                 digits:true
+               },
+               mpg: {
+                 required: true,
+                 number: true,
+                 digits: true
+               },
+               price: {
+                 required: true,
+                 number: true
+               },
+               milesDriven: {
+                 required: true,
+                 number: true,
+                 digits: true
+               }
+             },
+             messages: {
+               cost: "Cost must be valid positive number",
+               mpg: "mpg must be valid positive number",
+               price: "price of gas must be valid positive numbers",
+               milesDriven: "miles driven per month must be valid positive number"
+             }
+         });
+    });
+  </script>
 </head>
 <body>
   <h1>Interactive Dynamic Table</h1>
   <br />
-
   <!-- MSRP, discounts, rebates, down payment/“capital
 cost reduction”, interest rates, estimated miles driven, miles included, additional
 mile charges, and anything else necessary-->
   <!--Finance Form -->
   <div id="left">
+    <!--FORM-->
   <form class="form-container" id="myForm">
   <div class="form-title"><h2>MPG and Cost</h2></div>
   <div class="form-title">Cost($)</div>
-  <input class="form-field" type="text" name="cost" id="form_cost"/><br />
+  <input class="form-field" type="text" name="cost" id="form_cost" ><br />
   <div class="form-title">MPG</div>
-  <input class="form-field" type="text" name="mpg" id="form_mpg" /><br />
+  <input class="form-field" type="text" name="mpg" id="form_mpg" ><br />
   <div class="form-title">Price of Gas($)</div>
-  <input class="form-field" type="text" name="mpg" id="form_price" /><br />
+  <input class="form-field" type="text" name="price" id="form_price" ><br />
   <input type="button" value="Add" style="position:relative; top:15px; left: 41%;" onclick="addToTable();">  </div>
+  <!--END FORM-->
+
   <table style="width:50%" id="myTable">
     <tr>
       <th>Cost($)</th>
@@ -39,11 +76,9 @@ mile charges, and anything else necessary-->
     </tr>
   </table>
 <div class="group">
-Enter miles driven per month: <input type="text" name="milesDriven" id="milesMonth">
+Enter miles driven per month: <input type="text" name="milesDriven" id="milesMonth" >
 <input type="button" value="Calculate" onclick="calculate();">
 </div>
-
-
 
   <script>
     var i=1;
